@@ -8,7 +8,7 @@ class AttractionsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Attractions
-        fields = ['id', 'title', 'category', 'description', 'cover_image', 'country', 'city', 'linenos', 'owner']
+        fields = ['id', 'title', 'category', 'description', 'cover_image', 'country', 'city', 'linenos', 'owner', 'urls']
 
     def create(self, validated_data):
         # Create and return a new `Attractions` instance, given the validated data.

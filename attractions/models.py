@@ -24,10 +24,10 @@ class Attractions(models.Model):
     urls = models.URLField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        if not self.url:
+        if not self.urls:
             base_url = "https://www.google.com/maps/search/?api=1&query="
             query = f"{self.title}, {self.city}, {self.country}"
-            self.url = base_url + query.replace("","+")
+            self.urls = base_url + query.replace("","+")
         super(Attractions, self).save(*args, **kwargs)
 
     class Meta:
