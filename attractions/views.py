@@ -23,7 +23,7 @@ class AttractionsList(generics.ListCreateAPIView):
     queryset = Attractions.objects.all()
     serializer_class = AttractionsSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filter_fields = ('title', 'category', 'description ', 'cover_image', 'country', 'city', 'linenos', 'owner')
+    filter_fields = ('title', 'category', 'country', 'city', 'owner')
     search_fields = ['title', 'category', 'country', 'city']
     ordering_fields = ('title', 'category')
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
@@ -37,6 +37,6 @@ class AttractionsDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AttractionsSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ('title', 'category', 'description ', 'cover_image', 'country', 'city', 'linenos', 'owner')
+    filterset_fields = ('title', 'category', 'country', 'city', 'owner')
     search_fields = ['title', 'category', 'country', 'city']
     ordering_fields = ('title', 'category')

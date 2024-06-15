@@ -16,15 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from AttractionsManagment import settings
 from attractions import views
 from django.conf.urls import include
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('attractions.urls')),
-    path('attractions/', views.AttractionsList.as_view()),
-    path('attractions/<int:pk>/', views.AttractionsDetail.as_view()),
+    path('attractions/', include('attractions.urls')), # Include attractions app URLs
     path('users/', views.UserList.as_view()),
     path('users/<int:pk>/', views.UserDetail.as_view())
 ]
