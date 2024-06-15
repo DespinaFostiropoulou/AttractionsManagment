@@ -25,6 +25,7 @@ class Attractions(models.Model):
     def __str__(self):
         return self.title
 
+
     def save(self, *args, **kwargs):
         base_url = "https://www.google.com/maps/search/?api=1&query="
         query = f"{self.title},{self.city},{self.country}"
