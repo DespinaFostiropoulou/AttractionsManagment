@@ -19,17 +19,15 @@ class Attractions(models.Model):
     cover_image = models.ImageField(upload_to='attractions/covers/')
     country = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
+    linenos = models.BooleanField(default=False)
     owner = models.ForeignKey('auth.User', related_name='attractions', on_delete=models.CASCADE, null=True)
     urls = models.URLField(blank=True, null=True)
 
-    def __str__(self):
-        return self.title
-
-
     def save(self, *args, **kwargs):
-        base_url = "https://www.google.com/maps/search/?api=1&query="
-        query = f"{self.title},{self.city},{self.country}"
-        self.urls = base_url + query.replace(" ","+")
+        if not self.url:
+            base_url = "https://www.google.com/maps/search/?api=1&query="
+            query = f"{self.title}, {self.city}, {self.country}"
+            self.url = base_url + query.replace("","+")
         super(Attractions, self).save(*args, **kwargs)
 
     class Meta:
